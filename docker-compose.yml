@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  xe:
+    image: registry.gitlab.com/jtco-io/jtx/xe:latest
+    command: poetry run flask run --host=0.0.0.0
+    working_dir: /apps/xe
+    environment:
+      POETRY_CACHE_DIR: /cache
+      POETRY_VIRTUALENVS_CREATE: 1
+      FLASK_APP: src
+      FLASK_ENV: development
+    volumes:
+      - ./apps/xe:/apps/xe
+      - ./.cache/xe:/cache
+    ports:
+      - 5000:5000
